@@ -1,26 +1,24 @@
+import AWN from "awesome-notifications";
 import axios from "axios";
 
 const apiKey = '69418701003548ec90161300241909';
 const baseUrl = "http://api.weatherapi.com/v1";
 const city = 'sanandaj';
+const locationIconElements = document.getElementById("response");
 
 function getCurrentWeather(city) {
     const url = `${baseUrl}/current.json?key=${apiKey}&q=${city}`;
 
-
-    axios.get($)
+    axios.get(url)
         .then(response => {
-            
-            const locationIconElements = document.getElementsById("response");
-            if (locationIconElements.length > 0) {
-                locationIconElements[0].innerText = response.data.location.country; 
-            } else {
-                console.error("No elements found with class 'location-icon'");
-            }
+            new AWN().success('با موفقیت درخواست گرفته شد', { durations: { success: 0 }, labels: { success: "موفقیت" } })
+
+            locationIconElements.innerText = response.data.location.country;
+
         })
         .catch(error => {
-            console.error("Error while getting data:", error);
-            alert("Error while getting data: " + error.message); 
+            new AWN().warning('خطا در دریافت اطلاعات', { durations: { success: 0 }, labels: { warning: "عدم موفقیت" } })
+
         });
 }
 
@@ -44,12 +42,12 @@ console.log(response.data);
 //     .catch(p => alert("Error while getting data"))
 //     geCurrenttWeather('London');
 
-    // fetch(url)
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log(data);
-    // })
-    // .catch(error => {
-    //     console.log('Error:', error);
-    // });
+// fetch(url)
+// .then(response => response.json())
+// .then(data => {
+//     console.log(data);
+// })
+// .catch(error => {
+//     console.log('Error:', error);
+// });
 
