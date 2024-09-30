@@ -71,7 +71,7 @@ async function getWeather(city) {
             <span style="color: black;">${visibility} km</span> <!-- Display visibility -->
         </div>
         <div>
-            <img src="https:${conditionIcon}" alt="Weather Condition" style="margin-left: 25vh; transform: translate(30%, -230%); height: 11vh; width: 11vh; margin-bottom:20vh;" />
+            <img src="https:${conditionIcon}" alt="Weather Condition" style="margin-left: 25vh; transform: translate(30%, -270%); height: 11vh; width: 11vh; margin-bottom:20vh;" />
         </div>`;
 
         // Extracting forecast data for the next 6 days (Day 1 to Day 6)
