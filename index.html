@@ -1,79 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
   <title>weather</title>
 </head>
 
 <body>
-
-  <div>
-    <div class="apps-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="5vw" height="5vh" viewBox="0 0 48.000000 48.000000"
-        preserveAspectRatio="xMidYMid meet">
-
-        <g transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
-          <path
-            d="M284 386 c-24 -24 -44 -49 -44 -56 0 -16 84 -100 100 -100 16 0 100 84 100 100 0 7 -20 32 -44 56 -24 24 -49 44 -56 44 -7 0 -32 -20 -56 -44z" />
-          <path
-            d="M72 378 c-16 -16 -16 -120 0 -136 16 -16 120 -16 136 0 7 7 12 37 12 68 0 31 -5 61 -12 68 -7 7 -37 12 -68 12 -31 0 -61 -5 -68 -12z" />
-          <path
-            d="M72 198 c-16 -16 -16 -120 0 -136 16 -16 120 -16 136 0 7 7 12 37 12 68 0 31 -5 61 -12 68 -16 16 -120 16 -136 0z" />
-          <path
-            d="M252 198 c-16 -16 -16 -120 0 -136 16 -16 120 -16 136 0 7 7 12 37 12 68 0 31 -5 61 -12 68 -16 16 -120 16 -136 0z" />
+  
+  <div class="header-bar">
+    <div class="header">
+      <div class="icon-base-1"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="apps-icon" version="1.0" width="60.000000pt" height="60.000000pt" viewBox="0 0 60.000000 60.000000" preserveAspectRatio="xMidYMid meet">
+        
+        <g transform="translate(0.000000,60.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
+          <path d="M347 472 c-26 -26 -47 -54 -47 -63 0 -19 91 -109 111 -109 19 0 109 91 109 111 0 19 -91 109 -111 109 -8 0 -36 -22 -62 -48z"/>
+          <path d="M92 468 c-16 -16 -16 -140 0 -156 7 -7 40 -12 78 -12 38 0 71 5 78 12 16 16 16 140 0 156 -7 7 -40 12 -78 12 -38 0 -71 -5 -78 -12z"/>
+          <path d="M92 248 c-16 -16 -16 -140 0 -156 16 -16 140 -16 156 0 16 16 16 140 0 156 -16 16 -140 16 -156 0z"/>
+          <path d="M312 248 c-16 -16 -16 -140 0 -156 7 -7 40 -12 78 -12 38 0 71 5 78 12 16 16 16 140 0 156 -16 16 -140 16 -156 0z"/>
         </g>
-      </svg>
-
+      </svg> 
     </div>
-
-
-    <div class="bell-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"
-        width="5vw" height="5vh" fill-rule="nonzero">
-        <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-          stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
-          font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
-          <g transform="scale(5.33333,5.33333)">
-            <path
-              d="M23.27734,4.01758c-8.08348,0.38074 -14.27734,7.32581 -14.27734,15.36328v7.26758l-2.65039,5.33203c-0.00466,0.00972 -0.00922,0.01948 -0.01367,0.0293c-1.06626,2.2675 0.65977,4.99023 3.16602,4.99023h8.49805c0,3.29586 2.70414,6 6,6c3.29586,0 6,-2.70414 6,-6h8.49609c2.50624,0 4.23449,-2.72217 3.16797,-4.99023c-0.00445,-0.00981 -0.00901,-0.01958 -0.01367,-0.0293l-2.65039,-5.33203v-7.64844c0,-8.5062 -7.13671,-15.38664 -15.72266,-14.98242zM23.41797,7.01367c6.92006,-0.32579 12.58203,5.14853 12.58203,11.98633v8c-0.00021,0.23174 0.05327,0.46037 0.15625,0.66797l2.79297,5.62109c0.17961,0.38495 -0.0282,0.71094 -0.45312,0.71094h-28.99414c-0.42493,0 -0.63105,-0.32543 -0.45117,-0.71094v-0.00195l2.79297,-5.61914c0.10298,-0.2076 0.15646,-0.43623 0.15625,-0.66797v-7.61914c0,-6.50053 4.97945,-12.06393 11.41797,-12.36719zM21,37h6c0,1.67413 -1.32587,3 -3,3c-1.67413,0 -3,-1.32587 -3,-3z" />
-          </g>
-        </g>
-      </svg>
+    
+    <div id="header"> <!--bell-->
+      <div class="icon-base-2"> </div>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bell-icon" viewBox="0,0,256,256" width="5vh" height="5vh" fill-rule="nonzero"><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M23.27734,4.01758c-8.08348,0.38074 -14.27734,7.32581 -14.27734,15.36328v7.26758l-2.65039,5.33203c-0.00466,0.00972 -0.00922,0.01948 -0.01367,0.0293c-1.06626,2.2675 0.65977,4.99023 3.16602,4.99023h8.49805c0,3.29586 2.70414,6 6,6c3.29586,0 6,-2.70414 6,-6h8.49609c2.50624,0 4.23449,-2.72217 3.16797,-4.99023c-0.00445,-0.00981 -0.00901,-0.01958 -0.01367,-0.0293l-2.65039,-5.33203v-7.64844c0,-8.5062 -7.13671,-15.38664 -15.72266,-14.98242zM23.41797,7.01367c6.92006,-0.32579 12.58203,5.14853 12.58203,11.98633v8c-0.00021,0.23174 0.05327,0.46037 0.15625,0.66797l2.79297,5.62109c0.17961,0.38495 -0.0282,0.71094 -0.45312,0.71094h-28.99414c-0.42493,0 -0.63105,-0.32543 -0.45117,-0.71094v-0.00195l2.79297,-5.61914c0.10298,-0.2076 0.15646,-0.43623 0.15625,-0.66797v-7.61914c0,-6.50053 4.97945,-12.06393 11.41797,-12.36719zM21,37h6c0,1.67413 -1.32587,3 -3,3c-1.67413,0 -3,-1.32587 -3,-3z"/></g></g></svg>
     </div>
-
-    <div class="location-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="4vw" height="4vh" viewBox="0 0 24.000000 24.000000"
-        preserveAspectRatio="xMidYMid meet">
-
+    
+    
+    <div class="header">
+      <div class="location-container" id="location-name"></div> <!--location-->
+      <svg xmlns="http://www.w3.org/2000/svg" class="location-icon" version="1.0" viewBox="0 0 24.000000 24.000000" preserveAspectRatio="xMidYMid meet">
+        
         <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
-          <path
-            d="M70 195 c-18 -19 -21 -31 -16 -57 7 -36 51 -108 66 -108 15 0 59 71 66 105 4 22 0 38 -16 58 -28 35 -68 36 -100 2z m84 -11 c9 -8 16 -22 16 -30 0 -21 -39 -94 -50 -94 -11 0 -50 73 -50 94 0 20 28 46 50 46 10 0 26 -7 34 -16z" />
-          <path d="M100 150 c0 -13 7 -20 20 -20 13 0 20 7 20 20 0 13 -7 20 -20 20 -13 0 -20 -7 -20 -20z" />
+          <path d="M70 195 c-18 -19 -21 -31 -16 -57 7 -36 51 -108 66 -108 15 0 59 71 66 105 4 22 0 38 -16 58 -28 35 -68 36 -100 2z m84 -11 c9 -8 16 -22 16 -30 0 -21 -39 -94 -50 -94 -11 0 -50 73 -50 94 0 20 28 46 50 46 10 0 26 -7 34 -16z"/>
+          <path d="M100 150 c0 -13 7 -20 20 -20 13 0 20 7 20 20 0 13 -7 20 -20 20 -13 0 -20 -7 -20 -20z"/>
         </g>
       </svg>
+      <!-- <div id="response"></div> -->
+    </div>  <!--This part thenis so important for my js-->
+    
+    
+    <div id="city-name"></div>  
+    
+    
+    <div class="search-container">
+      <input type="text" placeholder="Enter city " class="search-bar">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="search-icon" viewBox="0,0,256,256" width="30px" height="30px" fill-rule="nonzero"><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M13,3c-5.511,0 -10,4.489 -10,10c0,5.511 4.489,10 10,10c2.39651,0 4.59738,-0.85101 6.32227,-2.26367l5.9707,5.9707c0.25082,0.26124 0.62327,0.36648 0.97371,0.27512c0.35044,-0.09136 0.62411,-0.36503 0.71547,-0.71547c0.09136,-0.35044 -0.01388,-0.72289 -0.27512,-0.97371l-5.9707,-5.9707c1.41266,-1.72488 2.26367,-3.92576 2.26367,-6.32227c0,-5.511 -4.489,-10 -10,-10zM13,5c4.43012,0 8,3.56988 8,8c0,4.43012 -3.56988,8 -8,8c-4.43012,0 -8,-3.56988 -8,-8c0,-4.43012 3.56988,-8 8,-8z"/></g></g></svg>
     </div>
-
-    <div>
-      <input type="text" placeholder="Search city" class="searchbar">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="search-icon"
-        viewBox="0,0,256,256" width="3.5vw" height="3.5vh" fill-rule="nonzero">
-        <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-          stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
-          font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
-          <g transform="scale(8.53333,8.53333)">
-            <path
-              d="M13,3c-5.511,0 -10,4.489 -10,10c0,5.511 4.489,10 10,10c2.39651,0 4.59738,-0.85101 6.32227,-2.26367l5.9707,5.9707c0.25082,0.26124 0.62327,0.36648 0.97371,0.27512c0.35044,-0.09136 0.62411,-0.36503 0.71547,-0.71547c0.09136,-0.35044 -0.01388,-0.72289 -0.27512,-0.97371l-5.9707,-5.9707c1.41266,-1.72488 2.26367,-3.92576 2.26367,-6.32227c0,-5.511 -4.489,-10 -10,-10zM13,5c4.43012,0 8,3.56988 8,8c0,4.43012 -3.56988,8 -8,8c-4.43012,0 -8,-3.56988 -8,-8c0,-4.43012 3.56988,-8 8,-8z" />
-          </g>
-        </g>
-      </svg>
-    </div>
+    
+    
   </div>
-
-  <div class="toggle-wrapper">
+  
+  <!-- <div class="toggle-wrapper">
     <input type="checkbox" id="toggle" class="toggle-checkbox" />
     <label for="toggle" class="toggle-label">
       <span class="toggle-circle"></span>
@@ -82,13 +64,11 @@
       <div class="sun-icon">☀️</div>
       <div class="moon-icon">🌙</div>
     </div>
-  </div>
-
-
-
-  <!-- <div class="toggle-switch"></div>
-    <div class="toggle-circle"></div>
   </div> -->
+
+
+
+
 
   <div class="texts">
     <div class="txt-item">Today</div>
@@ -97,41 +77,34 @@
   </div>
 
 
-  <!-- <div class="toggle-container">
-    <button class="toggle-button active">Forecast</button>
-    <button class="toggle-button">Air Quality</button>
-</div> -->
 
-  <div class="toggle-container">
-    <div class="indicator"></div>
-    <button class="toggle-button active">Forecast</button>
-    <button class="toggle-button">Air Quality</button>
-  </div>
-
-
+  
   <div class="days-container">
-
-
-    <div class="info-box"></div> <!--friday-->
-
+    
+    
+    <div class="info-box">
+    <p class="astro-info"></p>  
+    </div> <!--friday-->
+    
+    
     <div class="days">
       <div class="day-box sat">
-        <p>sat</p>
+        <p>SAT</p>
       </div>
       <div class="day-box sun">
-        <p>sun</p>
+        <p>SUN</p>
       </div>
       <div class="day-box mon">
-        <p>mon</p>
+        <p>MON</p>
       </div>
       <div class="day-box tue">
-        <p>tue</p>
+        <p>TUE</p>
       </div>
       <div class="day-box wed">
-        <p>wed</p>
+        <p>WED</p>
       </div>
       <div class="day-box thu">
-        <p>thu</p>
+        <p>Thu</p>
       </div>
     </div>
   </div>
@@ -143,10 +116,59 @@
 
   <div class="boxes-container">
     <div class="lower-boxes">
-      <div class="lower-box">Wind Status</div>
-      <div class="lower-box">UV Index</div>
-      <div class="lower-box">Humidity</div>
-      <div class="lower-box">Visibility</div>
+      <div class="lower-box-1">Wind Status
+        <p>
+          
+        </p>
+      </div>
+      <div class="lower-box-2">UV Index</div>
+      <div class="lower-box-3">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="10vh" height="10vh" viewBox="0 0 80.000000 80.000000" preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,80.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
+              <path d="M335 726 c-34 -15 -95 -79 -95 -101 0 -7 -10 -17 -22 -20 -28 -9 -78 -54 -78 -71 0 -7 -13 -15 -30 -19 -92 -20 -139 -129 -87 -206 30 -45 80 -69 145 -69 74 0 65 17 -13 22 -58 3 -69 8 -98 36 -27 28 -32 40 -32 82 0 40 5 54 30 80 18 19 43 33 66 36 31 5 38 11 43 35 5 28 48 59 81 59 8 0 15 7 15 15 0 54 75 115 140 115 46 0 108 -36 126 -73 14 -29 20 -32 59 -32 37 0 50 -6 77 -32 27 -27 33 -41 33 -78 0 -39 3 -46 28 -56 50 -21 70 -85 43 -138 -20 -38 -55 -51 -136 -51 -44 0 -70 -4 -70 -11 0 -7 28 -10 85 -8 80 4 86 6 117 37 29 28 33 39 33 83 0 45 -4 54 -36 84 -24 22 -38 45 -42 70 -3 20 -13 48 -22 62 -22 32 -74 63 -108 63 -19 0 -37 11 -60 36 -52 61 -125 79 -192 50z"/>
+              <path d="M280 600 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M320 580 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M550 580 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M350 550 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M550 540 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M180 510 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M220 490 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M250 460 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M680 430 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M381 379 c-36 -63 -10 -113 49 -94 31 10 35 48 9 94 -12 23 -26 41 -29 41 -3 0 -17 -18 -29 -41z m51 -23 c14 -32 4 -56 -22 -56 -11 0 -23 7 -27 16 -7 18 12 64 27 64 6 0 15 -11 22 -24z"/>
+              <path d="M660 400 c0 -5 5 -10 10 -10 6 0 10 5 10 10 0 6 -4 10 -10 10 -5 0 -10 -4 -10 -10z"/>
+              <path d="M271 199 c-36 -63 -10 -113 49 -94 31 10 35 48 9 94 -12 23 -26 41 -29 41 -3 0 -17 -18 -29 -41z m51 -23 c14 -32 4 -56 -22 -56 -11 0 -23 7 -27 16 -7 18 12 64 27 64 6 0 15 -11 22 -24z"/>
+              <path d="M471 159 c-36 -63 -10 -113 49 -94 31 10 35 48 9 94 -12 23 -26 41 -29 41 -3 0 -17 -18 -29 -41z m51 -23 c14 -32 4 -56 -22 -56 -11 0 -23 7 -27 16 -7 18 12 64 27 64 6 0 15 -11 22 -24z"/>
+            </g>
+          </svg>
+        </p>
+      </div>
+      
+      <div class="lower-box-4">Visibility  
+        <p><svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 9vh; margin-bottom: 5vh; width: 18vh; height: 16vh;" version="1.0" viewBox="0 0 64.000000 64.000000" preserveAspectRatio="xMidYMid meet">
+
+        <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
+        <path d="M165 626 c-39 -17 -81 -67 -90 -106 -4 -17 -18 -43 -31 -57 -51 -55 -53 -154 -5 -197 28 -26 48 -10 23 18 -43 46 -40 117 7 163 15 16 31 44 35 64 15 81 117 124 190 81 20 -12 38 -17 41 -11 9 14 -1 25 -39 43 -41 19 -90 20 -131 2z"/>
+        <path d="M393 579 c-35 -10 -48 -23 -38 -39 4 -6 17 -4 35 5 59 31 97 14 154 -69 11 -18 22 -24 28 -18 15 15 -50 102 -88 118 -38 16 -46 16 -91 3z"/>
+        <path d="M595 440 c-7 -12 2 -30 16 -30 12 0 12 27 0 35 -5 3 -12 1 -16 -5z"/>
+        <path d="M167 388 c-21 -16 -38 -63 -31 -83 18 -45 104 9 104 65 0 26 -3 30 -28 30 -16 0 -36 -6 -45 -12z m43 -32 c0 -16 -26 -39 -38 -34 -15 5 6 48 23 48 8 0 15 -6 15 -14z"/>
+        <path d="M619 388 c0 -2 -2 -19 -5 -37 -6 -46 -30 -81 -65 -94 -16 -6 -29 -17 -29 -24 0 -32 70 4 99 50 22 35 29 107 11 107 -5 0 -10 -1 -11 -2z"/>
+        <path d="M385 325 c-14 -13 -25 -31 -25 -40 0 -28 20 -55 40 -55 24 0 25 8 4 31 -33 37 8 73 51 45 31 -20 33 -58 5 -86 -17 -17 -33 -20 -110 -20 -73 0 -90 -3 -90 -15 0 -12 15 -15 79 -15 91 0 134 12 155 45 30 46 17 98 -31 123 -32 18 -51 15 -78 -13z"/>
+        <path d="M255 300 c-24 -26 -12 -37 20 -20 29 16 52 2 42 -24 -5 -13 -24 -16 -103 -16 -72 0 -95 -3 -92 -12 7 -21 174 -23 204 -3 29 19 31 55 6 78 -25 23 -55 21 -77 -3z"/>
+        <path d="M20 225 c0 -8 5 -15 10 -15 6 0 10 7 10 15 0 8 -4 15 -10 15 -5 0 -10 -7 -10 -15z"/>
+        <path d="M70 224 c0 -9 5 -14 12 -12 18 6 21 28 4 28 -9 0 -16 -7 -16 -16z"/>
+        <path d="M579 219 c-24 -24 -22 -52 4 -57 25 -5 57 26 57 55 0 30 -32 31 -61 2z m31 -19 c0 -5 -5 -10 -11 -10 -5 0 -7 5 -4 10 3 6 8 10 11 10 2 0 4 -4 4 -10z"/>
+        <path d="M180 185 c0 -9 9 -15 25 -15 16 0 25 6 25 15 0 9 -9 15 -25 15 -16 0 -25 -6 -25 -15z"/>
+        <path d="M110 137 c0 -29 32 -60 57 -55 27 5 28 43 1 62 -33 24 -58 21 -58 -7z"/>
+        <path d="M202 148 c6 -18 28 -21 28 -4 0 9 -7 16 -16 16 -9 0 -14 -5 -12 -12z"/>
+        <path d="M260 146 c0 -10 14 -16 42 -18 31 -2 44 -8 46 -21 5 -24 -25 -33 -47 -13 -22 20 -31 20 -31 1 0 -26 44 -47 74 -36 14 6 26 15 26 20 0 5 3 16 6 24 10 26 -32 57 -76 57 -28 0 -40 -4 -40 -14z"/>
+        <path d="M390 144 c0 -17 22 -14 28 4 2 7 -3 12 -12 12 -9 0 -16 -7 -16 -16z"/>
+        <path d="M442 148 c3 -7 24 -14 49 -16 53 -4 69 -16 69 -52 0 -33 -21 -53 -51 -48 -29 4 -34 21 -14 42 24 24 14 39 -13 21 -28 -21 -30 -70 -3 -85 50 -26 111 12 111 70 0 50 -38 80 -100 80 -37 0 -50 -4 -48 -12z"/>
+        <path d="M3 94 c-11 -29 23 -81 57 -89 41 -9 54 4 45 45 -5 24 -16 35 -41 46 -43 18 -53 18 -61 -2z m58 -24 c19 -11 27 -40 10 -40 -12 0 -41 29 -41 41 0 12 7 11 31 -1z"/>
+        </g>
+        </svg></p>
+      </div>
     </div>
 
 
