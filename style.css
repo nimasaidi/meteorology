@@ -467,7 +467,7 @@ body {
 .city-text {
   position: absolute;
   top: 136vh;
-  left: 50.5vw;
+  left: 53.5vw;
   color: white;
   font-size: 20px;
   font-weight: bold;
@@ -485,7 +485,7 @@ body {
 .top-city-text {
   position: absolute;
   top: 99vh;
-  left: 47vw;
+  left: 49.7vw;
   color: white;
   background: rgba(204, 204, 204, 0.585);
   height: max-content;
