@@ -1,150 +1,243 @@
-const apiKey = '69418701003548ec90161300241909'; // Actual API key
-const baseUrl = 'https://api.weatherapi.com/v1'; // HTTPS is recommended
-let city = 'sanandaj'; // Default city name
+document.addEventListener("DOMContentLoaded", () => {
+    const apiKey = '69418701003548ec90161300241909';
+    const baseUrl = 'https://api.weatherapi.com/v1';
+    let city = 'sanandaj';
 
-async function getWeather(city) {
-    const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${city}&days=7`; // Get the forecast for the next 7 days
+    let ball = document.querySelector('.ball');
+    let modeBtn = document.querySelector('.mode-btn');
+    let moon = document.querySelector('.moon');
+    const cityWeatherInfoElements = document.querySelectorAll('.city-weather-info');
 
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    ball.addEventListener('click', function () {
+        document.body.classList.toggle('light-mode');
+        modeBtn.classList.toggle('active');
+    });
+
+    async function getWeather(city) {
+        const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${city}&days=7`;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const cityNameElement = document.getElementById('city-name');
+            cityNameElement.innerHTML = `
+                <div style="
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center; 
+                    color: white; 
+                    position: absolute;
+                    top: 2.5vh;
+                    left: 45vh;
+                    font-size: x-large; 
+                    background-color: transparent;">
+                    ${data.location.name}
+                </div>
+            `;
+
+            const astroInfo = document.querySelector('.astro-info');
+            const todayForecast = data.forecast.forecastday[0];
+            const forecastedWindSpeed = todayForecast.day.maxwind_kph;
+            const forecastedPressure = todayForecast.day.pressure_mb;
+            const forecastedHumidity = todayForecast.day.avghumidity;
+            const forecastedTempC = todayForecast.day.avgtemp_c;
+            const sunrise = todayForecast.astro.sunrise;
+            const sunset = todayForecast.astro.sunset;
+            const conditionIcon = todayForecast.day.condition.icon;
+            const uvIndex = todayForecast.day.uv;
+            const visibility = todayForecast.day.avgvis_km;
+
+            astroInfo.innerHTML = `
+                <div style="margin-top: 15px;">
+                    <span style="color: #4F5658;">Temperature: </span>
+                    <span style="color: black;">${forecastedTempC}°C</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-top: 20px;">
+                    <span style="color: #4F5658; margin-right: 10px;">Wind Speed: </span>
+                    <span style="color: black; margin-right: 15px;">${forecastedWindSpeed} kph</span>
+                    <span style="color: #4F5658; margin-right: 3px;">Sunrise: </span>
+                    <span style="color: black;">${sunrise}</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-top: 15px;">
+                    <span style="color: #4F5658; margin-right: 10px;">Pressure: </span>
+                    <span style="color: black; margin-right: 15px;">${forecastedPressure} mb</span>
+                    <span style="color: #4F5658; margin-right: 3px;">Sunset: </span>
+                    <span style="color: black;">${sunset}</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <span style="color: #4F5658;">Humidity: </span>
+                    <span style="color: black;">${forecastedHumidity}%</span>
+                </div>
+                <div>
+                    <img src="https:${conditionIcon}" alt="Weather Condition" style="height: 11vh; width: 11vh; transform: translate(255%, -220%);" />
+                </div>
+            `;
+
+            const daysOfWeek = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+            const forecastDays = data.forecast.forecastday;
+
+            forecastDays.forEach((forecast, index) => {
+                const dayBox = document.querySelector(`.day-box.${daysOfWeek[index].toLowerCase()}`);
+                const dayName = daysOfWeek[index];
+
+                if (index < 6) {
+                    dayBox.innerHTML = `
+                        <div style="text-align: center; font-weight: bold; color: white; transform: translate(0, -150%);">${dayName}</div>
+                        <img src="https:${forecast.day.condition.icon}" alt="${forecast.day.condition.text}" />
+                        <p style="text-align: center; color: white; transform: translate(0, 150%); font-size: larger;">${forecast.day.avgtemp_c}°</p>
+                    `;
+                }
+            });
+
+            const lowerBox1 = document.querySelector('.lower-box-1');
+            lowerBox1.innerHTML = `
+                <p style="margin-top:0px;">Wind Status</p>
+                <p style="margin-top: 20.5vh;">${forecastedWindSpeed} km/h</p>
+            `;
+
+            const lowerBox2 = document.querySelector('.lower-box-2');
+            lowerBox2.innerHTML = `
+                <p style="margin-top:0px;">UV Index</p>
+                <p style="margin-top: 20.5vh; margin-left: 15vh;">${uvIndex}</p>
+            `;
+
+            const lowerBox3 = document.querySelector('.lower-box-3');
+            lowerBox3.innerHTML = `
+                <p style="margin-top:0px;">Pressure</p>
+                <p style="margin-top: 20.5vh;">${forecastedPressure} hPa</p>
+            `;
+
+            const lowerBox4 = document.querySelector('.lower-box-4');
+            lowerBox4.innerHTML = `
+                <p style="margin-top:0px;">Visibility</p>
+                <p style="margin-top: 20.5vh;">${visibility} km</p>
+            `;
+
+            saveCity(data.location.name, data.location.country, todayForecast.day.condition.text, conditionIcon);
+
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            const astroInfo = document.querySelector('.astro-info');
+            astroInfo.innerHTML = `<div>Error fetching weather data. Please try again later.</div>`;
         }
-        const data = await response.json();
-        console.log(data); // Debug log to see the API response
+    }
 
-        // Display the city and country name in the box with id "city-name"
-        const cityNameElement = document.getElementById('city-name');
-        cityNameElement.innerHTML = `
-            <div style="
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                color: white; 
-                position: absolute;
-                top: 2.5vh;
-                left: 45vh;
-                font-size: x-large; 
-                background-color: transparent;">
-                ${data.location.name} - ${data.location.country}
-            </div>
-        `;
+    function saveCity(city, country, condition, icon) {
+        let cities = JSON.parse(localStorage.getItem('cities')) || [];
+        let cityInfo = { name: city, country, condition, icon };
 
-        // Extracting today's data for detailed info display (Day 0 - Today)
-        const astroInfo = document.querySelector('.astro-info');
+        if (!cities.find(c => c.name === city)) {
+            cities.unshift(cityInfo);
+            if (cities.length > 4) {
+                cities.pop();
+            }
+            localStorage.setItem('cities', JSON.stringify(cities));
+            updateCityWeatherInfo();
+        }
+    }
 
-        const todayForecast = data.forecast.forecastday[0];
-        const forecastedWindSpeed = todayForecast.day.maxwind_kph;
-        const forecastedPressure = todayForecast.hour[0].pressure_mb;
-        const forecastedHumidity = todayForecast.hour[0].humidity;
-        const forecastedTempC = todayForecast.hour[0].temp_c;
-        const uvIndex = todayForecast.day.uv;  // UV index
-        const sunrise = todayForecast.astro.sunrise;
-        const sunset = todayForecast.astro.sunset;
-        const conditionIcon = todayForecast.day.condition.icon;
-        const visibility = todayForecast.hour[0].visibility; // Extract visibility
-
-        // Display detailed weather data for today along with the condition icon
-        astroInfo.innerHTML = `
-        <div style="margin-top: 15px;">
-            <span style="color: #4F5658;">Temperature: </span>
-            <span style="color: black;">${forecastedTempC}°C</span>
-        </div>
-        <div style="display: flex; align-items: center; margin-top: 20px;">
-            <span style="color: #4F5658; margin-right: 10px;">Wind Speed: </span>
-            <span style="color: black; margin-right: 15px;">${forecastedWindSpeed} kph</span>
-            <span style="color: #4F5658; margin-right: 3px;">Sunrise: </span>
-            <span style="color: black;">${sunrise}</span>
-        </div>
-        <div style="display: flex; align-items: center; margin-top: 15px;">
-            <span style="color: #4F5658; margin-right: 10px;">Pressure: </span>
-            <span style="color: black; margin-right: 15px;">${forecastedPressure} mb</span>
-            <span style="color: #4F5658; margin-right: 3px;">Sunset: </span>
-            <span style="color: black;">${sunset}</span>
-        </div>
-        <div style="margin-top: 15px;">
-            <span style="color: #4F5658;">Humidity: </span>
-            <span style="color: black;">${forecastedHumidity}%</span>
-        </div>
-        <div style="margin-top: 15px;">
-            <span style="color: #4F5658;">Visibility: </span>
-            <span style="color: black;">${visibility} km</span> <!-- Display visibility -->
-        </div>
-        <div>
-            <img src="https:${conditionIcon}" alt="Weather Condition" style="margin-left: 25vh; transform: translate(30%, -270%); height: 11vh; width: 11vh; margin-bottom:20vh;" />
-        </div>`;
-
-        // Extracting forecast data for the next 6 days (Day 1 to Day 6)
-        const dayBoxes = document.querySelectorAll('.day-box');
-        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const todayIndex = new Date().getDay(); // Get the current day (0 = Sunday, 6 = Saturday)
-
-        data.forecast.forecastday.slice(1).forEach((day, index) => { // Skip today's forecast (slice(1))
-            if (index < dayBoxes.length) {
-                const dayBox = dayBoxes[index];
-
-                const forecastedTempC = day.day.avgtemp_c;
-                const conditionIcon = day.day.condition.icon;
-
-                // Calculate the correct day name for next 6 days
-                const correctDayName = dayNames[(todayIndex + index + 1) % 7]; 
-
-                dayBox.innerHTML = `
-                    <p style="transform: translate(0% , -100%);">${correctDayName}</p>
-                    <img src="https:${conditionIcon}" alt="Weather Condition" style="height: 10vh; width: 10vh; transform: translate(0%, -25%);" />
-                    <p style="transform: translate(-0% , 50%); font-size: larger;">${forecastedTempC}°</p>
+    function updateCityWeatherInfo() {
+        const cities = JSON.parse(localStorage.getItem('cities')) || [];
+        cityWeatherInfoElements.forEach((element, index) => {
+            if (cities[index]) {
+                element.innerHTML = `
+                    <div style="text-align: start; color: white;">
+                        <span style="color: gray; font-size: medium; display: block; margin-bottom:2vh;">${cities[index].country}</span>
+                        <strong style="font-size: large; display: block;">${cities[index].name}</strong>
+                        <div style="display: flex; align-items: center; justify-content: start; margin-top: 5px;">
+                            <span style="color: white; margin-right: 5px; justify-content: start;">${cities[index].condition}</span>
+                            <img src="https:${cities[index].icon}" alt="Condition Icon" style="height: 9vh; width: 9vh; position: absolute; right: 5.5vw; bottom: ;" />
+                        </div>
+                    </div>
                 `;
+            } else {
+                element.innerHTML = '';
             }
         });
-
-        // Display wind speed in lower-box-1 (in km)
-        const lowerBox1 = document.querySelector('.lower-box-1');
-        lowerBox1.innerHTML = `
-            <p style="margin-top:0px;">Wind Status</p>
-            <p style="margin-top: 20.5vh;"> ${forecastedWindSpeed} km/h</p>
-        `;
-
-        // Display UV index in lower-box-2
-        const lowerBox2 = document.querySelector('.lower-box-2');
-        lowerBox2.innerHTML = `
-            <p style="margin-top:0px;">UV Index</p>
-            <p style="margin-top: 20.5vh; margin-left: 15vh;"> ${uvIndex} UV</p>
-        `;
-
-        // Display humidity in lower-box-3
-        const lowerBox3 = document.querySelector('.lower-box-3');
-        lowerBox3.innerHTML = `
-            <p style="margin-top:0px;">Humidity</p>
-            <p style="margin-top: 20.5vh;"> ${forecastedHumidity}%</p>
-        `;
-
-        // Display visibility in lower-box-4
-        const lowerBox4 = document.querySelector('.lower-box-4');
-        lowerBox4.innerHTML = `
-            <p style="margin-top:0px;">Visibility</p>
-            <p style="margin-top: 20.5vh;"> ${visibility} km</p>
-        `;
-
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
-        const astroInfo = document.querySelector('.astro-info');
-        astroInfo.innerHTML = `<div>Error fetching weather data. Please try again later.</div>`;
     }
-}
 
-// Event listener for the search bar to update the city name on "Enter"
-document.querySelector('.search-bar').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        const newCity = event.target.value;
-        console.log(`Searching for: ${newCity}`); // Debug log
-        city = newCity; // Update the city variable
-        getWeather(city); // Fetch and display weather for the new city
-        event.target.value = ''; // Clear the input field
+    const searchInput = document.querySelector('.search-bar');
+    searchInput.addEventListener('input', () => {
+        city = searchInput.value.trim();
+    });
+
+    searchInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            city = searchInput.value.trim();
+            if (city !== '') {
+                getWeather(city);
+                searchInput.value = '';
+            }
+        }
+    });
+
+    const infoBox = document.querySelector('.info-box');
+    const dayNameDisplayElement = document.createElement('div');
+    dayNameDisplayElement.classList.add('day-name-display');
+    dayNameDisplayElement.style = `
+        font-size: x-large; 
+        font-weight: bold; 
+        color: black;
+        position: absolute;
+        top: 3vh; 
+        left: 5px;
+    `;
+    const timeDisplayElement = document.createElement('div');
+    timeDisplayElement.classList.add('time-display');
+    timeDisplayElement.style = `
+        font-size: x-large; 
+        font-weight: bold; 
+        color: black;
+        position: absolute;
+        top: 3vh; 
+        left: 13vw;
+    `;
+    infoBox.appendChild(dayNameDisplayElement);
+    infoBox.appendChild(timeDisplayElement);
+    updateTime();
+
+    function getCurrentTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
     }
+
+    function getDayName() {
+        const now = new Date();
+        const options = { weekday: 'long' }; 
+        return now.toLocaleDateString('en-US', options);
+    }
+
+    function updateTime() {
+        const timeElement = document.querySelector('.time-display');
+        const dayNameElement = document.querySelector('.day-name-display');
+        const currentTime = getCurrentTime();
+        const currentDayName = getDayName();
+
+        timeElement.textContent = currentTime;
+        dayNameElement.textContent = currentDayName;
+    }
+
+    setInterval(updateTime, 1000);
+    updateCityWeatherInfo();
+    getWeather(city);
 });
 
-// Initial weather fetch for the default city
-getWeather(city);
+
+
+    
+
+
+
+
+
+
 
 
 

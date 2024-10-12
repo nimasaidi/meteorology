@@ -1,8 +1,12 @@
 body {
   background: #111015;
+  color: white;
   overflow-x: hidden;
 }
-
+body.light-mode{
+  background-color: white;
+  color: black;
+}
 
 
 
@@ -130,7 +134,7 @@ body {
   display: flex;
   justify-content: start;
   color: white;
-  padding-top: 14vh;
+  padding-top: 2vh;
   padding-left: 2.5vw;
   font-size: large;
   gap: 3vw;
@@ -209,7 +213,7 @@ body {
 
 .info-box {
   content: '';
-  width: 20vw;
+  width: 0vw;
   height: 30vh;
   left: 1vw;
   top: 3vh;
@@ -234,7 +238,6 @@ body {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   z-index: auto;
-
 }
 
 .astro-info {
@@ -246,8 +249,8 @@ body {
 .days {
   display: flex;
   margin-top: 5.5vh;
-  margin-left: 7vw;
-  gap: 3.5vw;
+  margin-left: 8vw;
+  gap: 3vw;
   color: white;
 }
 
@@ -257,7 +260,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 13vh;
+  width: 11vh;
   height: 30vh;
   border-radius: 20px;
   background-color: #1B1B1D;
@@ -284,55 +287,38 @@ body {
 
 
 
-
-.toggle-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-
-.toggle-checkbox {
-  display: none;
-}
-
-
-.toggle-label {
+.toggle-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 80px;
-  height: 40px;
-  background-color: #1e1e1e;
-  border-radius: 50px;
-  border: 2px solid #424242;
-  cursor: pointer;
+  background-color: #1f1f1f;
+  border-radius: 25px;
   padding: 5px;
-  transition: background-color 0.3s ease;
+  width: fit-content;
 }
 
-
-.toggle-ball {
-  background-color: #d0e7f9;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s ease;
+.toggle-button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: gray;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-
-.icon {
-  height: 18px;
-  width: 18px;
+#forecast-btn.active {
+  background-color: #add8e6; /* Light blue */
+  color: black;
 }
 
-
-.toggle-checkbox:checked+.toggle-label .toggle-ball {
-  transform: translateX(40px);
+#air-quality-btn.active {
+  background-color: #add8e6;
+  color: black;
 }
+
+#forecast-btn,
+#air-quality-btn {
+  background-color: transparent;
+}
+
 
 
 
@@ -484,7 +470,7 @@ body {
 
 .top-city-text {
   position: absolute;
-  top: 99vh;
+  top: 100vh;
   left: 49.7vw;
   color: white;
   background: rgba(204, 204, 204, 0.585);
@@ -503,9 +489,98 @@ body {
 
 .city-weather-info {
   display: flex;
+  justify-content: space-between;  /* Ensure the text and icon are on opposite sides */
+  align-items: center;
   background: #1B1B1D;
-  height: 15vh;
+  height: 12vh;
   width: 20vw;
   border-radius: 20px;
   margin-top: 3vh;
+  padding: 10px 15px;
+  color: white;
+}
+
+.city-weather-info .city-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.city-weather-info .city-info .city-name {
+  font-weight: bold;
+  font-size: 1.5em;  /* Make city name larger */
+}
+
+.city-weather-info .city-info .country-name {
+  font-size: 0.8em;
+  color: #AAAAAA;
+}
+
+.city-weather-info .city-info .condition {
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.city-weather-info img {
+  height: 4vh;  /* Adjust the icon size */
+  width: auto;
+}
+.mode-btn {
+  background-color: #181818;
+  border-radius: 40px;
+  width: 61.5px;
+  height: 36px;
+  position: absolute;
+  right: 30px;
+  top: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0 7px;
+}
+
+.ball {
+  background-color: white;
+  width: 23px;
+  height: 23px;
+  border-radius: 50px;
+  transition: transform 0.5s ease;
+  position: relative;
+}
+
+.mode-btn.active .ball {
+  transform: translateX(-40px);
+}
+
+.moon-btn {
+  opacity: 0;
+  position: absolute;
+  right: 6px;
+}
+
+.light-mode .moon-btn {
+  opacity: 1;
+}
+
+.light-mode .sun-btn {
+  opacity: 0;
+}
+
+.sun-btn {
+  padding-right: 4px;
+}
+
+.date {
+  display: flex;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.day {
+  margin: 4px;
+  color: #575757;
+}
+
+.white {
+  color: white;
 }
