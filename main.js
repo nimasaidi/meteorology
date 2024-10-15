@@ -2,11 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiKey = '69418701003548ec90161300241909';
     const baseUrl = 'https://api.weatherapi.com/v1';
     let city = 'sanandaj';
+    const cityWeatherInfoElements = document.querySelectorAll('.city-weather-info');
+    let weatherChart;
 
     let ball = document.querySelector('.ball');
     let modeBtn = document.querySelector('.mode-btn');
     let moon = document.querySelector('.moon');
-    const cityWeatherInfoElements = document.querySelectorAll('.city-weather-info');
 
     ball.addEventListener('click', function () {
         document.body.classList.toggle('light-mode');
@@ -22,19 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const data = await response.json();
-
             const cityNameElement = document.getElementById('city-name');
             cityNameElement.innerHTML = `
-                <div style="
-                    display: flex; 
-                    align-items: center; 
-                    justify-content: center; 
-                    color: white; 
-                    position: absolute;
-                    top: 2.5vh;
-                    left: 45vh;
-                    font-size: x-large; 
-                    background-color: transparent;">
+                <div style="display: flex; align-items: center; justify-content: center; color: white; position: absolute; top: 2.5vh; left: 45vh; font-size: x-large; background-color: transparent;">
                     ${data.location.name}
                 </div>
             `;
@@ -50,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const conditionIcon = todayForecast.day.condition.icon;
             const uvIndex = todayForecast.day.uv;
             const visibility = todayForecast.day.avgvis_km;
+
+            const currentTime = await getCurrentTimeInCity(data.location.lat, data.location.lon);
+            const nightTime = isNightTime(currentTime, sunrise, sunset);
 
             astroInfo.innerHTML = `
                 <div style="margin-top: 15px;">
@@ -118,6 +112,39 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
             saveCity(data.location.name, data.location.country, todayForecast.day.condition.text, conditionIcon);
+
+            const ctx = document.getElementById('weatherChart').getContext('2d');
+            const labels = ['09:00', '11:00', '14:00', '16:00', '18:00'];
+            const rainChances = forecastDays[0].hour.map(hour => hour.chance_of_rain).slice(0, labels.length);
+
+            if (weatherChart) {
+                weatherChart.destroy();
+            }
+
+            weatherChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Chance of Rain (%)',
+                        data: rainChances,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Chance of Rain (%)'
+                            }
+                        }
+                    }
+                }
+            });
 
         } catch (error) {
             console.error('Error fetching weather data:', error);
@@ -224,11 +251,20 @@ document.addEventListener("DOMContentLoaded", () => {
         dayNameElement.textContent = currentDayName;
     }
 
+    async function getCurrentTimeInCity(lat, lon) {
+        const response = await fetch(`https://worldtimeapi.org/api/timezone/Etc/GMT`);
+        const data = await response.json();
+        return data.datetime.slice(11, 19);
+    }
+
+    function isNightTime(currentTime, sunrise, sunset) {
+        return currentTime >= sunset || currentTime < sunrise;
+    }
+
     setInterval(updateTime, 1000);
     updateCityWeatherInfo();
     getWeather(city);
 });
-
 
 
     
